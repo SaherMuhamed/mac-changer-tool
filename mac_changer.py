@@ -28,7 +28,7 @@ def change_mac(interface, new_mac):
     subprocess.call(["ifconfig", interface, "down"])
     subprocess.call(["ifconfig", interface, "hw", "ether", new_mac])
     subprocess.call(["ifconfig", interface, "up"])
-    print(f"[+] Changing MAC Address for {interface} to {new_mac}")
+    print(f"[+] Changing MAC Address for {interface} to {new_mac}\n")
 
 
 def get_current_mac(interface):
@@ -37,7 +37,7 @@ def get_current_mac(interface):
     if mac_address_search_result:
         return mac_address_search_result.group(0)
     else:
-        print("[-] Couldn't find MAC address, try another NAT card.")
+        print("[-] Couldn't find MAC address, try another NAT card.\n")
 
 
 option = get_argument()
@@ -49,6 +49,6 @@ change_mac(interface=option.interface, new_mac=option.mac_address)
 
 current_mac = get_current_mac(option.interface)
 if current_mac == option.mac_address:
-    print(f"[+] MAC Address was successfully changed to {current_mac}")
+    print(f"[+] MAC Address was successfully changed to {current_mac}\n")
 else:
-    print("[-] Couldn't change MAC Address")
+    print("[-] Couldn't change MAC Address\n")
