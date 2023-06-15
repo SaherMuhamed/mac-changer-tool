@@ -11,8 +11,8 @@ This script allows you to change the MAC address of a specified network interfac
   1. Open a terminal or command prompt.
   2. Run the script using the following command:
     ```commandline
-    python mac_changer.py -i <interface> -m <new_mac_address>
-    ```
+    python3 mac_changer.py -i interface -m new_mac_address
+  ```
     Replace <interface> with the name of the network interface you want to modify (e.g., wlan0) and <new_mac_address> with the desired MAC address you want to set (e.g., 70:00:00:00:00:08).
 
 ### Options
@@ -22,11 +22,11 @@ The script supports the following command-line options:
 - `-m`, `--mac`: Specifies the new MAC address to assign to the network interface. This option is mandatory.
 
 ### Example
-To change the MAC address of the interface wlan0 to 70:00:00:00:00:08, run the following command:
-  
-    ```commandline
-    python mac_changer.py -i wlan0 -m 70:00:00:00:00:08
-    ```
+To change the MAC address of the interface `wlan0` to `70:00:00:00:00:08`, run the following command:
+```commandline
+python3 mac_changer.py -i wlan0 -m 70:00:00:00:00:08
+```
+
 ### Screenshot
 ![screenshots/linux-command.png](secreenshots/linux-command.png)
 
