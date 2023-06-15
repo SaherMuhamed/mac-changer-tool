@@ -20,11 +20,14 @@ The script supports the following command-line options:
 
 - `-i`, `--interface`: Specifies the network interface to change its MAC address. This option is mandatory.
 - `-m`, `--mac`: Specifies the new MAC address to assign to the network interface. This option is mandatory.
-Example
+
+### Example
 To change the MAC address of the interface wlan0 to 70:00:00:00:00:08, run the following command:
     ```commandline
     python mac_changer.py -i wlan0 -m 70:00:00:00:00:08
     ```
+### Screenshot
+![screenshots/linux-command.png](secreenshots/linux-command.png)
 
 ### How It Works
 1. The script starts by importing the necessary modules: re for regular expression matching, subprocess for executing shell commands, and OptionParser for parsing command-line options.
