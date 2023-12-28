@@ -1,6 +1,8 @@
 # MAC Address Changer
 
-This script allows you to change the MAC address of a specified network interface on your system. It is written in Python and uses the subprocess module to interact with the operating system's command-line interface.
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)  ![Kali](https://img.shields.io/badge/Kali-268BEE?style=for-the-badge&logo=kalilinux&logoColor=white)
+
+This script allows you to change the MAC address of a specified network interface on your system providing a secure way to modify the MAC address. It is written in Python and uses the subprocess module to interact with the operating system's command-line interface.
 
 ## Prerequisites
 - Python 3.x
@@ -28,21 +30,12 @@ python3 mac_changer.py -i wlan0 -m 70:00:00:00:00:08
 ```
 
 ## Screenshot
-![](screenshots/linux-command.png)
-
-## How It Works
-1. The script starts by importing the necessary modules: re for regular expression matching, subprocess for executing shell commands, and OptionParser for parsing command-line options.
-2. The get_argument() function is defined to handle command-line arguments. It uses OptionParser to define and parse the options and arguments. If the mandatory options are not provided, an error message is displayed.
-3. The change_mac(interface, new_mac) function is defined to change the MAC address of the specified interface. It uses the subprocess.call() function to execute the necessary shell commands to bring the interface down, set the new MAC address, and bring the interface back up. The commented-out lines show an alternative version of the same commands using a formatted string and the shell=True option. However, these commands are considered less secure due to potential security vulnerabilities, so the uncommented lines should be used instead.
-4. The get_current_mac(interface) function is defined to retrieve the current MAC address of the specified interface. It uses subprocess.check_output() to execute the ifconfig command and capture its output. The output is then searched using a regular expression pattern to find the MAC address. If found, the MAC address is returned; otherwise, an error message is displayed.
-5. The option variable is assigned the result of calling the get_argument() function to retrieve the command-line options.
-6. The current MAC address of the specified interface is obtained by calling the get_current_mac(interface) function.
-7. The current MAC address is displayed.
-8. The change_mac(interface, new_mac) function is called to change the MAC address of the specified interface to the new MAC address provided in the command-line options.
-9. The current MAC address of the specified interface is obtained again.
-10. If the current MAC address matches the new MAC address, a success message is displayed; otherwise, an error message is displayed.
+![](https://github.com/SaherMuhamed/mac-changer-tool/blob/master/screenshots/Screenshot%202023-12-28%20021841.png)
 
 ## Notes
 - This script uses the `subprocess` module to execute shell commands. Make sure to run it with appropriate permissions or as an administrator, depending on your operating system and network configuration.
 - Changing the MAC address of a network interface may have legal and ethical implications. Ensure that you have proper authorization and adhere to applicable laws and regulations.
 - This script is provided as-is without any warranty. Use it at your own risk.
+
+### Updates
+`v 1.0.1 - 28/12/2023` adding ethtool command to fetch permanent MAC of network card
