@@ -38,4 +38,4 @@ python3 mac_changer.py -i wlan0 -m 70:00:00:00:00:08
 - This script is provided as-is without any warranty. Use it at your own risk.
 
 ### Updates
-`v 1.0.1 - 28/12/2023` adding ethtool command to fetch permanent MAC of network card
+`v1.0.1 - 28/12/2023` adding ethtool command to fetch permanent MAC of network card
