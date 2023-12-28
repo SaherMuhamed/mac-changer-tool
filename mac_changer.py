@@ -13,7 +13,7 @@ if sys.version_info < (3, 0):
 
 
 def args():
-    parser = OptionParser()
+    parser = OptionParser(description="------- Tool for Changing MAC Address of Any Network Adapter -------")
     parser.add_option("-i", "--interface", dest="interface", help="Specify an interface to change its MAC. Example: "
                                                                   "--interface wlan0")
     parser.add_option("-m", "--mac", dest="mac_address", help="Enter a new MAC Address to your NAT interface. Example: "
@@ -26,13 +26,23 @@ def args():
     return options
 
 
+def get_ethtool_mac(interface):
+    try:
+        # run the ethtool command and capture the output
+        result = subprocess.check_output(["ethtool", "-P", interface], stderr=subprocess.STDOUT, text=True)
+        return result.strip()
+    except subprocess.CalledProcessError as e:
+        # handle the case where the command returns a non-zero exit code
+        return f"Error: {e.output.strip()}"
+    
+
 def change_mac(iface, mac):
     print("[+] Changing MAC address for " + iface + " to " + mac)
     # subprocess.call("ifconfig " + iface + " down", shell=True)
     # subprocess.call("ifconfig " + iface + " hw ether " + mac, shell=True)
     # subprocess.call("ifconfig " + iface + " up", shell=True)
 
-    # these 3 commands are much more secure version
+    # these 3 commands are much more secure version than above to prevent the misuse of the tool
     subprocess.call(["ifconfig", iface, "down"])  # execute the command in foreground
     subprocess.call(["ifconfig", iface, "hw", "ether", mac])
     subprocess.call(["ifconfig", iface, "up"])
@@ -51,7 +61,8 @@ def search_mac_regex(iface):
 try:
     option = args()
     current_mac_before = search_mac_regex(iface=option.interface)
-    print("\n[+] Current MAC: " + str(current_mac_before))
+    print("\n[+] " + get_ethtool_mac(interface=option.interface))
+    print("[+] Current MAC: " + str(current_mac_before))
 
     change_mac(iface=option.interface, mac=option.mac_address)
     current_mac_after = search_mac_regex(iface=option.interface)
